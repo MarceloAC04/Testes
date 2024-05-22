@@ -17,11 +17,11 @@ const Favorites = ({ token, atual, audio, setAtual, setAudio }) => {
   const [lista, setLista] = useState([]);
   // const [atual, setAtual] = useState("");
 
-  async function ListFavorites(){
+  async function ListFavorites() {
     const retorno = await AsyncStorage.getItem("list");
 
-    if( retorno ){
-      setLista( JSON.parse( retorno ) );
+    if (retorno) {
+      setLista(JSON.parse(retorno));
     }
   }
 
@@ -33,7 +33,7 @@ const Favorites = ({ token, atual, audio, setAtual, setAudio }) => {
 
   return (
     <LinearGradient
-      style={{ flex : 1 }}
+      style={{ flex: 1 }}
       colors={['#2e0000', '#121212', '#121212', '#001b09']}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
@@ -48,9 +48,10 @@ const Favorites = ({ token, atual, audio, setAtual, setAudio }) => {
           </ContainerPlaylistData>
 
           <ContainerList
-            data={ lista }
-            renderItem={ ({ item }) => (
+            data={lista}
+            renderItem={({ item }) => (
               <Music
+                label="music-item"
                 play={atual == item.track.preview_url}
                 onPress={() => playSound(item.track.preview_url, atual, setAtual, audio, setAudio)}
 
@@ -59,9 +60,9 @@ const Favorites = ({ token, atual, audio, setAtual, setAudio }) => {
                 artist={item.track.artists.map(artist => artist.name).join(', ').substring(0, 25) + '...'}
               />
             )}
-            showsVerticalScrollIndicator={ false }
-            keyExtractor={ (item, index) => `${item.id}-${index}`}
-            contentContainerStyle={{ marginTop: 15, paddingBottom : 150 }}
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item, index) => `${item.id}-${index}`}
+            contentContainerStyle={{ marginTop: 15, paddingBottom: 150 }}
           />
         </ContainerBody>
       </Container>

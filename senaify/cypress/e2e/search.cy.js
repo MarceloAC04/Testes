@@ -12,7 +12,7 @@ describe('Teste da tela de pesquisa', () => {
   it('Procurar uma música', () => {
     cy.get("[data-testid='campoBusca']").type("Roots Bloody Roots")
     cy.get("[aria-label='music-item']").should("have.length.greaterThan", 0)
-    
+
     // cy.get("[aria-label='music-item']").filter(':contains("Roots Bloody Roots")',   { matchCase: true }).click()
     cy.scrollTo("top")
   });
@@ -23,7 +23,7 @@ describe('Teste da tela de pesquisa', () => {
     cy.get("[aria-label='music-item']").filter(":contains('Roots Bloody Roots')").then(async (item) => {
       cy.wrap(item).find("[data-testid='icon-button']").click()
     });
-
-    
   });
+
+  
 })
